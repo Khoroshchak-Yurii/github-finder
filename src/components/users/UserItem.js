@@ -1,24 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-export class UserItem extends Component {
-    constructor() {
-        super();
-        this.state = {
-            id: 'id',
-            login: 'mojombo'
-        }
-    }
 
-    render() {
+const UserItem = ({ user: { login, avatar_url, html_url } }) => {
+
         return (
             <div className="card text-center">
-                <h3>{this.state.login}</h3>
+                <img
+                    src={avatar_url}
+                    alt=""
+                    className='round-img'
+                    style={{ width: '60px' }}
+                />
+                <h3>{login}</h3>
                 <div>
-                    <a href="" className="btn btn-dark btn-sm my-1">click</a>
+                    <a href={html_url} className="btn btn-dark btn-sm my-1">more</a>
                 </div>
             </div>
         )
-    }
+}
+
+UserItem.propTypes = {
+    user: PropTypes.object.isRequired,
 }
 
 export default UserItem
